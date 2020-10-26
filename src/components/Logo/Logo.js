@@ -1,6 +1,7 @@
 import React from 'react';
 import burgerLogo from '../../assets/images/burger-logo.png';
-import classes from './Logo.css'
+import classes from './Logo.css';
+import PropTypes from 'prop-types';
 
 const Logo = (props) => (
     <div className={classes.Logo} style={{height: props.height}}>
@@ -8,5 +9,9 @@ const Logo = (props) => (
     </div>
 );
 
+Logo.propTypes = {
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+}
 
 export { Logo };
