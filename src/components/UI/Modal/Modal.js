@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './Modal.css';
-import { Aux } from '../../../hoc/Auxiliary';
+import { Aux } from '../../../hoc/Auxiliary/Auxiliary';
 import { Backdrop } from '../Backdrop/Backdrop';
 //Of cause I could leave Modal as functional component
 //and wrap and export with React.memo
