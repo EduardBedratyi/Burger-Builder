@@ -11,7 +11,7 @@ const NavigationItems = () => (
 );
 
 NavigationItems.propTypes = {
-    link: PropTypes.string.isRequired,
+    link: PropTypes.string,
 }
 
 export { NavigationItems };

@@ -9,7 +9,7 @@ import { SideDrawer } from '../Navigation/SideDrawer/SideDrawer';
 //as well as Toolbar opening the SideDrawer by clicking on the toggle button
 class Layout extends Component {
   state = {
-    showSideDrawer: true
+    showSideDrawer: false
   }
 
   sideDrawerClosedHandler = () => {
