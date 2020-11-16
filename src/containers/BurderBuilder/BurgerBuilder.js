@@ -165,4 +165,4 @@ BurgerBuilder.propTypes = {
   ingredients: PropTypes.object.isRequired,
 };
 
-export default WithErrorHandler(BurgerBuilder);
+export default WithErrorHandler(BurgerBuilder, axios);

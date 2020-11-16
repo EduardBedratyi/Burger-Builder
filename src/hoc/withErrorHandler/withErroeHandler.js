@@ -10,15 +10,29 @@ const WithErrorHandler = (WrappedComponent, axios) => {
     componentDidUpdate() {
       axios.interseptors.request.use((req) => {
         this.setState({ error: null });
+        return req;
       });
-      axios.interseptors.response.use(null, (error) => {
-        this.setState({ error: error });
-      });
+      axios.interseptors.response.use(
+        (res) => res,
+        (error) => {
+          this.setState({ error: error });
+        }
+      );
     }
+
+    errorConfirmedHandler = () => {
+      this.setState({ error: null });
+    };
+
     render() {
       return (
         <Aux>
-          <Modal show>It seems something is going wrong...</Modal>
+          <Modal
+            show={this.state.error}
+            modalClosed={this.errorConfirmedHandler}
+          >
+            {this.state.error ? this.state.error.message : null}
+          </Modal>
           <WrappedComponent {...this.props} />
         </Aux>
       );
