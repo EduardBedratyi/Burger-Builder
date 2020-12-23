@@ -1,6 +1,6 @@
 import React from 'react';
 import { isCore } from 'resolve';
-import { Burger } from '../../Burger/Burger';
+import Burger from '../../Burger/Burger';
 import { Button } from '../../UI/Button/Button';
 import classes from './CheckoutSummary.css';
 
