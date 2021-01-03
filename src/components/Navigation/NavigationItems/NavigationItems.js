@@ -4,14 +4,16 @@ import { NavigationItem } from './NavigationItem/NavigationItem';
 import PropTypes from 'prop-types';
 
 const NavigationItems = () => (
-    <ul className={classes.NavigationItems}>
-        <NavigationItem link="/" active>Burger Builder</NavigationItem>
-        <NavigationItem link="/">Checkout</NavigationItem>
-    </ul>
+  <ul className={classes.NavigationItems}>
+    <NavigationItem link='/' exact>
+      Burger Builder
+    </NavigationItem>
+    <NavigationItem link='/orders'>Orders</NavigationItem>
+  </ul>
 );
 
 NavigationItems.propTypes = {
-    link: PropTypes.string,
-}
+  link: PropTypes.string,
+};
 
 export { NavigationItems };
