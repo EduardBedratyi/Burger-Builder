@@ -3,7 +3,7 @@ import { Layout } from '../src/hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurderBuilder/BurgerBuilder';
 import { Checkout } from './containers/Checkout/Checkout';
 import { Route, Switch } from 'react-router-dom';
-import { Orders } from './containers/Orders/Orders';
+import Orders from './containers/Orders/Orders';
 
 class App extends Component {
   render() {
