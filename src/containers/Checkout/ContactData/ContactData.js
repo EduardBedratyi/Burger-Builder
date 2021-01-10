@@ -13,6 +13,7 @@ class ContactData extends Component {
         elementConfig: {
           type: 'text',
           placeholder: 'Your Name',
+          message: 'Name',
         },
         value: '',
         validation: {
@@ -26,6 +27,7 @@ class ContactData extends Component {
         elementConfig: {
           type: 'text',
           placeholder: 'Street',
+          message: 'Street',
         },
         value: '',
         validation: {
@@ -39,6 +41,7 @@ class ContactData extends Component {
         elementConfig: {
           type: 'text',
           placeholder: 'ZIP Code',
+          message: 'ZIP Code',
         },
         value: '',
         validation: {
@@ -54,6 +57,7 @@ class ContactData extends Component {
         elementConfig: {
           type: 'text',
           placeholder: 'Country',
+          message: 'Country',
         },
         value: '',
         validation: {
@@ -67,6 +71,7 @@ class ContactData extends Component {
         elementConfig: {
           type: 'email',
           placeholder: 'Your E-mail',
+          message: 'E-mail',
         },
         value: '',
         validation: {
@@ -169,7 +174,7 @@ class ContactData extends Component {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
-            valueType={formElement.config.elementConfig.type}
+            notification={formElement.config.elementConfig.message}
             invalid={!formElement.config.valid}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
