@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CheckoutSummary } from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import { Route } from 'react-router-dom';
-import { ContactData } from './ContactData/ContactData';
+import ContactData from './ContactData/ContactData';
 import { connect } from 'react-redux';
 
 class Checkout extends Component {
@@ -26,8 +26,8 @@ class Checkout extends Component {
           render={(props) => (
             <ContactData
               props
-              ingredients={this.state.ingredients}
-              price={this.state.totalPrice}
+              ingredients={this.props.ings}
+              price={this.props.price}
               {...props}
             />
           )}
