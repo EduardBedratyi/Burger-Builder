@@ -18,7 +18,7 @@ const removeIngredient = (name) => {
 const setIngredients = (ingredients) => {
   return {
     type: actionTypes.SET_INGREDIENTS,
-    ingredients: ingredients,
+    burgIngredients: ingredients,
   };
 };
 
