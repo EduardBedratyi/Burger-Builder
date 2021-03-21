@@ -30,4 +30,4 @@ const purchaseBurgerStart = (orderData) => {
   };
 };
 
-export { purchaseBurgerSuccess, purchaseBurgerFail };
+export { purchaseBurgerSuccess, purchaseBurgerFail, purchaseBurgerStart };
