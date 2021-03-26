@@ -5,7 +5,7 @@ const inialState = {
   loading: false,
 };
 
-const reducer = (state = inialState, action) => {
+const orderReducer = (state = inialState, action) => {
   switch (action.type) {
     case actionTypes.PURCHASE_BURGER_START:
       return {
@@ -32,4 +32,4 @@ const reducer = (state = inialState, action) => {
   }
 };
 
-export default reducer;
+export default orderReducer;
