@@ -42,6 +42,7 @@ const burgerBuilderReducer = (state = initialState, action) => {
           cheese: action.burgIngredients.cheese,
           meat: action.burgIngredients.meat,
         },
+        totalPrice: 4,
         error: false,
       };
     case actionTypes.FETCH_INGREDIENTS_FAILED:
