@@ -133,6 +133,7 @@ class Auth extends Component {
     if (this.props.error) {
       //custom error message
       //errorMessage = <p>...OOPS (the error)</p>;
+
       //error message from backend
       errorMessage = <p>{this.props.error.message}</p>;
     }
