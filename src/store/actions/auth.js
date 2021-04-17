@@ -46,8 +46,8 @@ const auth = (email, password, isSignup) => {
         dispatch(authSuccess(response.data.idToken, response.data.localId));
       })
       .catch((err) => {
-        console.log(err);
-        dispatch(authFail(err));
+        //error message from backend
+        dispatch(authFail(err.response.data.error));
       });
   };
 };
