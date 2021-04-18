@@ -22,6 +22,20 @@ const authFail = (error) => {
   };
 };
 
+const logout = () => {
+  return {
+    type: actionTypes.AUTH_LOGOUT,
+  };
+};
+
+const checkAuthTimeout = (expirationTime) => {
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch(logout());
+    }, expirationTime * 1000);
+  };
+};
+
 const auth = (email, password, isSignup) => {
   //here dispatch is in argument thanks to "thunk"
   return (dispatch) => {
@@ -44,6 +58,7 @@ const auth = (email, password, isSignup) => {
         console.log(response);
         //I`ve taken "localId" from response
         dispatch(authSuccess(response.data.idToken, response.data.localId));
+        dispatch(checkAuthTimeout(response.data.expiresIn));
       })
       .catch((err) => {
         //error message from backend
@@ -52,4 +67,4 @@ const auth = (email, password, isSignup) => {
   };
 };
 
-export { authStart, authSuccess, authFail, auth };
+export { authStart, authSuccess, authFail, auth, checkAuthTimeout, logout };
