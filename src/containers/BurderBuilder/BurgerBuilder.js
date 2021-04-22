@@ -104,10 +104,10 @@ class BurgerBuilder extends Component {
   }
 }
 
-BurgerBuilder.propTypes = {
-  price: PropTypes.number.isRequired,
-  ingredients: PropTypes.object.isRequired,
-};
+// BurgerBuilder.propTypes = {
+//   price: PropTypes.number.isRequired,
+//   ingredients: PropTypes.object.isRequired,
+// };
 
 const mapStateToProps = (state) => {
   return {

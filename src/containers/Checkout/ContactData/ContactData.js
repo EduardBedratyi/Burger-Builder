@@ -103,7 +103,7 @@ class ContactData extends Component {
     //to prevent sending request and reloading the page
     event.preventDefault();
     //console.log(this.props.ingredients);
-    this.setState({ loading: true });
+
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier] = this.state.orderForm[
@@ -126,7 +126,7 @@ class ContactData extends Component {
     //     this.setState({ loading: false });
     //   });
 
-    this.props.onOrderBurger(order);
+    this.props.onOrderBurger(order, this.props.token);
   };
 
   checkValidity(value, rules) {
@@ -168,9 +168,9 @@ class ContactData extends Component {
     updatedFormElement.value = event.target.value;
     updatedFormElement.valid = this.checkValidity(
       updatedFormElement.value,
-      updatedFormElement.validation,
-      (updatedFormElement.touched = true)
+      updatedFormElement.validation
     );
+    updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
 
     let formIsValid = true;
@@ -200,7 +200,7 @@ class ContactData extends Component {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
-            notification={formElement.config.elementConfig.message}
+            // notification={formElement.config.elementConfig.message}
             invalid={!formElement.config.valid}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
@@ -230,12 +230,14 @@ const mapStateToProps = (state) => {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
     loading: state.order.loading,
+    token: state.auth.token,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData)),
+    onOrderBurger: (orderData, token) =>
+      dispatch(actions.purchaseBurger(orderData, token)),
   };
 };
 
