@@ -1,5 +1,5 @@
-import axios from 'axios';
-import * as actionTypes from './actionTypes';
+import axios from "axios";
+import * as actionTypes from "./actionTypes";
 
 const authStart = () => {
   return {
@@ -47,16 +47,16 @@ const auth = (email, password, isSignup) => {
       returnSecureToken: true,
     };
     let url =
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCGvCA6Y_jcsWi7GrW1hosbV6ugT0eWEwM';
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCGvCA6Y_jcsWi7GrW1hosbV6ugT0eWEwM";
     if (!isSignup) {
       url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCGvCA6Y_jcsWi7GrW1hosbV6ugT0eWEwM';
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCGvCA6Y_jcsWi7GrW1hosbV6ugT0eWEwM";
     }
     axios
       .post(url, authData)
       .then((response) => {
         console.log(response);
-        //I`ve taken "localId" from response
+        //"localId" and "expiresIn" are taken from response
         dispatch(authSuccess(response.data.idToken, response.data.localId));
         dispatch(checkAuthTimeout(response.data.expiresIn));
       })
