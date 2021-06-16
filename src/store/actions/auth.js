@@ -56,7 +56,7 @@ const auth = (email, password, isSignup) => {
       .post(url, authData)
       .then((response) => {
         console.log(response);
-        //I`ve taken "localId" from response
+        //"localId" and "expiresIn" are taken from response
         dispatch(authSuccess(response.data.idToken, response.data.localId));
         dispatch(checkAuthTimeout(response.data.expiresIn));
       })
