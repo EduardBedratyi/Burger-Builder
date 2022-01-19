@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import { Spinner } from '../../../components/UI/Spinner/Spinner';
-import { Button } from '../../../components/UI/Button/Button';
-import classes from './ContactData.css';
-import axios from '../../../axios-orders';
-import { Input } from '../../../components/UI/Input/Input';
-import { connect } from 'react-redux';
-import { WithErrorHandler } from '../../../hoc/withErrorHandler/withErrorHandler';
-import * as actions from '../../../store/actions/index';
+import React, { Component } from "react";
+import { Spinner } from "../../../components/UI/Spinner/Spinner";
+import { Button } from "../../../components/UI/Button/Button";
+import classes from "./ContactData.css";
+import axios from "../../../axios-orders";
+import { Input } from "../../../components/UI/Input/Input";
+import { connect } from "react-redux";
+import { WithErrorHandler } from "../../../hoc/withErrorHandler/withErrorHandler";
+import * as actions from "../../../store/actions/index";
 
 class ContactData extends Component {
   state = {
     orderForm: {
       name: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'text',
-          placeholder: 'Your Name',
-          message: 'Name',
+          type: "text",
+          placeholder: "Your Name",
+          message: "Name",
         },
-        value: '',
+        value: "",
         validation: {
           required: true,
         },
@@ -26,13 +26,13 @@ class ContactData extends Component {
         touched: false,
       },
       street: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'text',
-          placeholder: 'Street',
-          message: 'Street',
+          type: "text",
+          placeholder: "Street",
+          message: "Street",
         },
-        value: '',
+        value: "",
         validation: {
           required: true,
         },
@@ -40,13 +40,13 @@ class ContactData extends Component {
         touched: false,
       },
       zipCode: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'text',
-          placeholder: 'ZIP Code',
-          message: 'ZIP Code',
+          type: "text",
+          placeholder: "ZIP Code",
+          message: "ZIP Code",
         },
-        value: '',
+        value: "",
         validation: {
           required: true,
           minLength: 5,
@@ -56,13 +56,13 @@ class ContactData extends Component {
         touched: false,
       },
       country: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'text',
-          placeholder: 'Country',
-          message: 'Country',
+          type: "text",
+          placeholder: "Country",
+          message: "Country",
         },
-        value: '',
+        value: "",
         validation: {
           required: true,
         },
@@ -70,13 +70,13 @@ class ContactData extends Component {
         touched: false,
       },
       email: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'email',
-          placeholder: 'Your E-mail',
-          message: 'E-mail',
+          type: "email",
+          placeholder: "Your E-mail",
+          message: "E-mail",
         },
-        value: '',
+        value: "",
         validation: {
           required: true,
         },
@@ -84,14 +84,14 @@ class ContactData extends Component {
         touched: false,
       },
       deliveryMethod: {
-        elementType: 'select',
+        elementType: "select",
         elementConfig: {
           options: [
-            { value: 'fastest', displayValue: 'Fastest' },
-            { value: 'cheapest', displayValue: 'Cheapest' },
+            { value: "fastest", displayValue: "Fastest" },
+            { value: "cheapest", displayValue: "Cheapest" },
           ],
         },
-        value: 'fastest',
+        value: "fastest",
         validation: {},
         valid: true,
       },
@@ -103,17 +103,17 @@ class ContactData extends Component {
     //to prevent sending request and reloading the page
     event.preventDefault();
     //console.log(this.props.ingredients);
-    this.setState({ loading: true });
+
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
-      formData[formElementIdentifier] = this.state.orderForm[
-        formElementIdentifier
-      ].value;
+      formData[formElementIdentifier] =
+        this.state.orderForm[formElementIdentifier].value;
     }
     const order = {
       ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData,
+      userId: this.props.userId,
     };
     //it was cut it and put into order action creater at store>actions>order.js
     // axios
@@ -126,14 +126,14 @@ class ContactData extends Component {
     //     this.setState({ loading: false });
     //   });
 
-    this.props.onOrderBurger(order);
+    this.props.onOrderBurger(order, this.props.token);
   };
 
   checkValidity(value, rules) {
     let isValid = true;
 
     if (rules.required) {
-      isValid = value.trim() !== '' && isValid;
+      isValid = value.trim() !== "" && isValid;
     }
 
     if (rules.minLength) {
@@ -142,6 +142,17 @@ class ContactData extends Component {
 
     if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
+    }
+
+    if (rules.isEmail) {
+      const pattern =
+        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+      isValid = pattern.test(value) && isValid;
+    }
+
+    if (rules.isNumeric) {
+      const pattern = /^\d+$/;
+      isValid = pattern.test(value) && isValid;
     }
 
     return isValid;
@@ -158,9 +169,9 @@ class ContactData extends Component {
     updatedFormElement.value = event.target.value;
     updatedFormElement.valid = this.checkValidity(
       updatedFormElement.value,
-      updatedFormElement.validation,
-      (updatedFormElement.touched = true)
+      updatedFormElement.validation
     );
+    updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
 
     let formIsValid = true;
@@ -190,14 +201,14 @@ class ContactData extends Component {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
-            notification={formElement.config.elementConfig.message}
+            // notification={formElement.config.elementConfig.message}
             invalid={!formElement.config.valid}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
             changed={(event) => this.inputChangeHandler(event, formElement.id)}
           />
         ))}
-        <Button btnType='Success' disabled={!this.state.formIsValid}>
+        <Button btnType="Success" disabled={!this.state.formIsValid}>
           ORDER
         </Button>
       </form>
@@ -220,12 +231,15 @@ const mapStateToProps = (state) => {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
     loading: state.order.loading,
+    token: state.auth.token,
+    userId: state.auth.userId,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData)),
+    onOrderBurger: (orderData, token) =>
+      dispatch(actions.purchaseBurger(orderData, token)),
   };
 };
 
