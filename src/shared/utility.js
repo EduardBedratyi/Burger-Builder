@@ -1,6 +1,8 @@
 const updateObject = (oldObject, updatedProperties) => {
   return {
+    // object to update
     ...oldObject,
+    // object with all properties to overwrite
     ...updatedProperties,
   };
 };

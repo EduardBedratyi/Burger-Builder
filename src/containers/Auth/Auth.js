@@ -50,7 +50,7 @@ class Auth extends Component {
   }
 
   inputChangeHandler = (event, controlName) => {
-    const updatedControls = {
+    /*const updatedControls = {
       //this way I can overwrite some of the properties, e.g value and valid
       ...this.state.controls,
       [controlName]: {
@@ -62,7 +62,7 @@ class Auth extends Component {
         ),
         touched: true,
       },
-    };
+    };*/
     const updatedControls = updateObject(this.state.controls, {
       [controlName]: updateObject(this.state.controls[controlName], {
         value: event.target.value,
@@ -140,10 +140,10 @@ class Auth extends Component {
         {errorMessage}
         <form onSubmit={this.submitHandler}>
           {form}
-          <Button btnType="Success">
+          <Button btnType='Success'>
             {this.state.isSignup ? "SignUp" : "SignIn"}
           </Button>
-          <Button btnType="Danger" clicked={this.switchAuthModeHandler}>
+          <Button btnType='Danger' clicked={this.switchAuthModeHandler}>
             Switch to {this.state.isSignup ? "SignIn" : "signUp"}
           </Button>
         </form>
