@@ -5,7 +5,6 @@ import { BuildControls } from "../../components/Burger/BuildControls/BuildContro
 import { Modal } from "../../components/UI/Modal/Modal";
 import axios from "../../axios-orders";
 import { OrderSummary } from "../../components/Burger/OrderSummary/OrderSummary";
-import PropTypes from "prop-types";
 import { Spinner } from "../../components/UI/Spinner/Spinner";
 import { WithErrorHandler } from "../../hoc/withErrorHandler/withErrorHandler";
 import { connect } from "react-redux";
@@ -23,7 +22,7 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log("this.props: ", this.props);
     this.props.onInitIngredients();
   }
 

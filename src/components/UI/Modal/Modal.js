@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import classes from './Modal.css';
-import { Aux } from '../../../hoc/Auxiliary/Auxiliary';
-import { Backdrop } from '../Backdrop/Backdrop';
+import React, { Component } from "react";
+import classes from "./Modal.css";
+import { Aux } from "../../../hoc/Auxiliary/Auxiliary";
+import { Backdrop } from "../Backdrop/Backdrop";
 //Of cause I could leave Modal as functional component
 //and wrap and export with React.memo
 //This would be alternative to using shouldComponentUpdate
@@ -25,10 +25,6 @@ class Modal extends Component {
     );
   }
 
-  componentWillUpdate() {
-    console.log('[Modal] WillUpdate');
-  }
-
   render() {
     return (
       <Aux>
@@ -36,8 +32,8 @@ class Modal extends Component {
         <div
           className={classes.Modal}
           style={{
-            transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
-            opacity: this.props.show ? '1' : '0',
+            transform: this.props.show ? "translateY(0)" : "translateY(-100vh)",
+            opacity: this.props.show ? "1" : "0",
           }}
         >
           {this.props.children}

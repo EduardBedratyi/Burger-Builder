@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { CheckoutSummary } from '../../components/Order/CheckoutSummary/CheckoutSummary';
-import { Route, Redirect } from 'react-router-dom';
-import ContactData from './ContactData/ContactData';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
+import React, { Component } from "react";
+import { CheckoutSummary } from "../../components/Order/CheckoutSummary/CheckoutSummary";
+import { Route, Redirect } from "react-router-dom";
+import ContactData from "./ContactData/ContactData";
+import { connect } from "react-redux";
 
 class Checkout extends Component {
   checkoutCancelledHandler = () => {
@@ -11,7 +10,7 @@ class Checkout extends Component {
   };
 
   checkoutContinuedHandler = () => {
-    this.props.history.replace('/checkout/contact-data');
+    this.props.history.replace("/checkout/contact-data");
   };
 
   render() {
@@ -29,7 +28,7 @@ class Checkout extends Component {
             checkoutContinued={this.checkoutContinuedHandler}
           />
           <Route
-            path={this.props.match.path + '/contact-data'}
+            path={this.props.match.path + "/contact-data"}
             component={ContactData}
           />
         </div>
