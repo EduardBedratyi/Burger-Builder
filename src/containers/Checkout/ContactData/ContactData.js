@@ -103,7 +103,7 @@ class ContactData extends Component {
   orderHandler = (event) => {
     //to prevent sending request and reloading the page
     event.preventDefault();
-    //console.log(this.props.ingredients);
+    //console.log("this.props.ingredients: ", this.props.ingredients);
 
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
@@ -146,20 +146,14 @@ class ContactData extends Component {
       }
     );
 
-    console.log("updatedFormElement: ", updatedFormElement);
-
     const updatedOrderForm = updateObject(this.state.orderForm, {
       [inputIdentifier]: updatedFormElement,
     });
-
-    console.log("updatedOrderForm: ", updatedOrderForm);
 
     let formIsValid = true;
     for (let inputIdentifier in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
     }
-
-    console.log("formIsValid: ", formIsValid);
 
     this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
   };
