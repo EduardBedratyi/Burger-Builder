@@ -21,4 +21,9 @@ describe('<NavigationItems />', () => {
         wrapper.setProps({isAuthenticatedUser: true});
         expect(wrapper.find(NavigationItem)).toHaveLength(3);
     });
+
+    it('should en exact logout button', () => {
+        wrapper.setProps({isAuthenticatedUser: true});
+        expect(wrapper.contains(<NavigationItem link="/logout">Logout</NavigationItem>)).toEqual(true);
+    });
 });
