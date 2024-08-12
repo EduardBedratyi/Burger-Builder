@@ -9,6 +9,7 @@ configure({adapter: new Adapter()});
 describe('<NavigationItems />', () => {
     //Results of describe is in the Test Suits
     let wrapper;
+    
     beforeEach(() => {
         wrapper = shallow(<NavigationItems />);
     });
